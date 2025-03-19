@@ -1,4 +1,4 @@
-import React, { useContext } from 'react'
+import React, { useEffect , useContext } from 'react'
 import { ExpertContext } from './context/ExpertContext';
 import { AdminContext } from './context/AdminContext';
 import { Route, Routes } from 'react-router-dom'
@@ -17,12 +17,32 @@ import ExpertiseProfile from './pages/Expert/ExpertiseProfile';
 
 const App = () => {
 
-  const { dToken } = useContext(ExpertContext)
-  const { aToken } = useContext(AdminContext)
+  useEffect(() => {
+    const script = document.createElement('script');
+    script.src = "https://translate.google.com/translate_a/element.js?cb=googleTranslateElementInit";
+    script.async = true;
+    document.body.appendChild(script);
+
+    window.googleTranslateElementInit = () => {
+      new google.translate.TranslateElement(
+        {pageLanguage: 'en'},
+         'google_translate_element');
+    }
+
+    
+  }, []);
+
+  const { dToken } = useContext(ExpertContext);
+  const { aToken } = useContext(AdminContext);
+
+  
+ 
 
   return dToken || aToken ? (
     <div className='bg-[#F8F9FD]'>
       <ToastContainer />
+         <div id='google_translate_element' ></div>
+
       <Navbar />
       <div className='flex items-start'>
         <Sidebar />

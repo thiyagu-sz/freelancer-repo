@@ -19,14 +19,30 @@ const App = () => {
   useEffect(() => {
     const script = document.createElement('script');
     script.src = "//code.tidio.co/nvzggz2d8gas8qm7vzt5bcvgwe6e4tuj.js";
+    script.src = "https://translate.google.com/translate_a/element.js?cb=googleTranslateElementInit";
     script.async = true;
     document.body.appendChild(script);
+
+    window.googleTranslateElementInit = () => {
+      new google.translate.TranslateElement(
+        {pageLanguage: 'en'},
+         'google_translate_element');
+    }
+
+    
+
+    
   }, []);
 
   return (
-    <div className='mx-4 sm:mx-[10%]'>
+    <div className='mx-4 sm:mx-[10%]' id='google_translate_element'>
+
       <ToastContainer />
+      <h1>Choose Your Prefered Language</h1>
+      <div id='google_translate_element' ></div>
+
       <Navbar />
+
       <Routes>
         <Route path='/' element={<Home />} />
         <Route path='/experts' element={<Doctors />} />
