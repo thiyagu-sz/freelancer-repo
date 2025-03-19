@@ -1,7 +1,7 @@
 import jwt from 'jsonwebtoken'
 
-// doctor authentication middleware
-const authDoctor = async (req, res, next) => {
+// Expert authentication middleware
+const authExpert = async (req, res, next) => {
     const { dtoken } = req.headers
     if (!dtoken) {
         return res.json({ success: false, message: 'Not Authorized Login Again' })
@@ -16,4 +16,4 @@ const authDoctor = async (req, res, next) => {
     }
 }
 
-export default authDoctor;
+export default authExpert;

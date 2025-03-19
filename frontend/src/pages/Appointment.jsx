@@ -9,7 +9,7 @@ import { toast } from 'react-toastify'
 const Appointment = () => {
 
     const { docId } = useParams()
-    const { doctors, currencySymbol, backendUrl, token, getDoctosData } = useContext(AppContext)
+    const { experts, currencySymbol, backendUrl, token, getDoctosData } = useContext(AppContext)
     const daysOfWeek = ['SUN', 'MON', 'TUE', 'WED', 'THU', 'FRI', 'SAT']
 
     const [docInfo, setDocInfo] = useState(false)
@@ -20,7 +20,7 @@ const Appointment = () => {
     const navigate = useNavigate()
 
     const fetchDocInfo = async () => {
-        const docInfo = doctors.find((doc) => doc._id === docId)
+        const docInfo = experts.find((doc) => doc._id === docId)
         setDocInfo(docInfo)
     }
 
@@ -119,10 +119,10 @@ const Appointment = () => {
     }
 
     useEffect(() => {
-        if (doctors.length > 0) {
+        if (experts.length > 0) {
             fetchDocInfo()
         }
-    }, [doctors, docId])
+    }, [experts, docId])
 
     useEffect(() => {
         if (docInfo) {

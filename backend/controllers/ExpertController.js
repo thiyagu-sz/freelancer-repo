@@ -19,12 +19,12 @@ const appointmentComplete = async (req, res) => {
             res.json({ success: true, message: 'Appointment Completed and Email Sent' });
 
             const userEmail = appointmentData.userData.email;
-            const doctorName = appointmentData.docData.name;
+            const ExpertName = appointmentData.docData.name;
             const slotDate = appointmentData.slotDate;
             const slotTime = appointmentData.slotTime;
 
             // ✅ Use the email template
-            const emailHTML = generateEmailTemplate("confirm", doctorName, slotDate, slotTime);
+            const emailHTML = generateEmailTemplate("confirm", ExpertName, slotDate, slotTime);
 
             sendEmail(userEmail, "Your Appointment is Confirmed!", emailHTML)
                 .then(emailResponse => console.log("✅ Email sent:", emailResponse))
@@ -53,12 +53,12 @@ const appointmentCancel = async (req, res) => {
             res.json({ success: true, message: 'Appointment Canceled and Email Sent' });
 
             const userEmail = appointmentData.userData.email;
-            const doctorName = appointmentData.docData.name;
+            const ExpertName = appointmentData.docData.name;
             const slotDate = appointmentData.slotDate;
             const slotTime = appointmentData.slotTime;
 
             // ✅ Use the email template
-            const emailHTML = generateEmailTemplate("cancel", doctorName, slotDate, slotTime);
+            const emailHTML = generateEmailTemplate("cancel", ExpertName, slotDate, slotTime);
 
             sendEmail(userEmail, "Your Appointment is Canceled", emailHTML)
                 .then(emailResponse => console.log("✅ Email sent:", emailResponse))
@@ -76,7 +76,7 @@ const appointmentCancel = async (req, res) => {
 };
 
 // ✅ API for doctor Login
-const loginDoctor = async (req, res) => {
+const loginExpert = async (req, res) => {
     try {
         const { email, password } = req.body;
         const user = await ExpertModel.findOne({ email });
@@ -97,7 +97,7 @@ const loginDoctor = async (req, res) => {
 };
 
 // ✅ API to get doctor appointments for doctor panel
-const appointmentsDoctor = async (req, res) => {
+const appointmentsExpert = async (req, res) => {
     try {
         const { docId } = req.body;
         const appointments = await appointmentModel.find({ docId });
@@ -143,10 +143,10 @@ const appointmentsDoctor = async (req, res) => {
 // };
 
 // ✅ API to get all doctors list for Frontend
-const doctorList = async (req, res) => {
+const expertList = async (req, res) => {
     try {
-        const doctors = await ExpertModel.find({}).select(['-password', '-email']);
-        res.json({ success: true, doctors });
+        const experts = await ExpertModel.find({}).select(['-password', '-email']);
+        res.json({ success: true, experts });
     } catch (error) {
         console.log(error);
         res.json({ success: false, message: error.message });
@@ -220,11 +220,11 @@ const ExpertiseDashboard = async (req, res) => {
 
 // ✅ Export All APIs
 export {
-    loginDoctor,
-    appointmentsDoctor,
+    loginExpert,
+    appointmentsExpert,
     appointmentCancel,
     appointmentComplete,
-    doctorList,
+    expertList,
     changeAvailablity,
     ExpertiseDashboard,
     ExpertiseProfile,

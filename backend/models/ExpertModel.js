@@ -1,6 +1,6 @@
 import mongoose from "mongoose";
 
-const doctorSchema = new mongoose.Schema({
+const expertSchema = new mongoose.Schema({
     name: { type: String, required: true },
     email: { type: String, required: true, unique: true },
     password: { type: String, required: true },
@@ -16,5 +16,5 @@ const doctorSchema = new mongoose.Schema({
     date: { type: Number, required: true },
 }, { minimize: false })
 
-const ExpertModel = mongoose.models.doctor || mongoose.model("doctor", doctorSchema);
+const ExpertModel = mongoose.models.expert || mongoose.model("expert", expertSchema);
 export default ExpertModel;
