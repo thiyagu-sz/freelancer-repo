@@ -27,7 +27,7 @@ const About = () => {
           </p>
           <b className="text-gray-800">Our Mission</b>
           <p>
-            At InnovateMate, our mission is to empower individuals with the resources, networks, and tools needed to transform ideas into successful projects. We aim to create an environment where collaboration and innovation thrive.
+            At InnovateMate, testttt our mission is to empower individuals with the resources, networks, and tools needed to transform ideas into successful projects. We aim to create an environment where collaboration and innovation thrive.
           </p>
         </div>
       </div>
